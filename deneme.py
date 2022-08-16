@@ -34,10 +34,9 @@ asdasd(task_id)
     
     
     
-#token problems   
+  
 #curl -F file=@/path/to/file -F machine="cuckoo1" -H "Authorization: Token YOU_TOKEN" http://0.0.0.0:8000/apiv2/tasks/create/file/
-#dosya alma adresi
-#http://0.0.0.0:8000/filereport/20/json/   
-#cevap alma adresi 
 
-#temel api source: https://github.com/roytuts/flask/tree/master/python-flask-rest-api-file-upload
+#http://0.0.0.0:8000/filereport/20/json/  
+# cookie: csrftoken=DGDrHNLkvs9Mrymby1wjlFUzl1XW8oQny5Ux56lpvfjB2Mexm6QYm67N6x5TKlmg
+#Error:  You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third parties.
