@@ -36,7 +36,7 @@ def upload_file():
 		filefullpath = app.config['UPLOAD_FOLDER']+filename
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))		
 		
-		task_id = scan_file()
+		task_id = scan_file(filename, filefullpath)
 		
 		
 		"""time.sleep(1)
@@ -56,11 +56,10 @@ def upload_file():
 
 
 
-def scan_file():
-
+def scan_file(filename, filefullpath):
 	multipart_data = MultipartEncoder(fields={'file': (
 							filename,
-							open(filefullpath ,'rb'),
+							open(filefullpath,'rb'),
 							'application/octet-stream')})
 
 	header = {
