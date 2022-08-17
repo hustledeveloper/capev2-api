@@ -1,13 +1,66 @@
 import json
 import requests
 from requests_toolbelt.multipart.encoder import MultipartEncoder
+import os
+import urllib.request
+from app import app
+from flask import Flask, request, redirect, jsonify
+from werkzeug.utils import secure_filename
+import time
 
 api_url = 'http://0.0.0.0:8000'
 
+ALLOWED_EXTENSIONS = set(['apk', 'zip', 'ipa', 'appx'])
+
+filename = ''
+filefullpath = ''
+task_id = 0
+
+def allowed_file(filename):
+	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/file-upload', methods=['POST'])
 def upload_file():
+
+	if 'file' not in request.files:
+		resp = jsonify({'message' : 'No file part in the request'})
+		resp.status_code = 400
+		return resp
+	file = request.files['file']
+	if file.filename == '':
+		resp = jsonify({'message' : 'No file selected for uploading'})
+		resp.status_code = 400
+		return resp
+	if file and allowed_file(file.filename):
+		filename = secure_filename(file.filename)
+		filefullpath = app.config['UPLOAD_FOLDER']+filename
+		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))		
+		
+		task_id = scan_file()
+		
+		
+		"""time.sleep(1)
+
+                 """
+ 
+		
+		resp = get_json('29')
+		
+		
+		return resp
+	else:
+		resp = jsonify({'message' : 'Allowed file types are apk, zip, ipa, appx'})
+		resp.status_code = 400
+		return resp
+
+
+
+
+def scan_file():
+
 	multipart_data = MultipartEncoder(fields={'file': (
-							'danger.zip',
-							open('/home/omer/İndirilenler/danger.zip','rb'),
+							filename,
+							open(filefullpath ,'rb'),
 							'application/octet-stream')})
 
 	header = {
@@ -24,28 +77,39 @@ def upload_file():
 
 
 
-def get_ceysin(task_id):
+def get_json(task_id):
 
 	header = {
 		
 		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537'
 		}
-	
-	#token = {'csrftoken':'32waZaYf3EW8HNx9Nk2zoeTcYr0iqc2qlQChAGRp2nXd3FKu2dI72W0kbPcCwivs'}
-	#res1 = requests.get(api_url+'/analysis/'+str(task_id)+'/')
+
 	response = requests.get(api_url+'/filereport/'+str(task_id)+'/json/', headers=header)
 	
-	print(response.text)
+	return(response.text)
       
-task_id = upload_file()
-get_ceysin('29')
-print(task_id)
+
  
-""" 
-daha önceden analiz edilmiş bir işlemin id'si ile json dosyasını almayı başardım, şimdi tek sorun
-yapılan bir analiz için, json sonucu dönmesine kadar geçecek 2 dakikada bekleyebilecek ve sonuç çıkınca sonucu alacak bir kod yazmak, şu an kod analiz yaptığı an sonucu istiyor ve çıkmamış sonucu alamayıp hata veriyor 
-""" 
+
  
-#curl -F file=@/path/to/file -F machine="cuckoo1" -H "Authorization: Token YOU_TOKEN" http://0.0.0.0:8000/apiv2/tasks/create/file/
-#http://0.0.0.0:8000/filereport/20/json/  
+if __name__ == "__main__":
+    app.run()
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ #scan_file da bi sorun var 
+ 
+
+#curl -F file=@/path/to/file -F machine="cuckoo1" -H "Authorization: Token YOU_TOKEN" http://127.0.0.1:5000/file-upload
+#http://0.0.0.0:8000/filereport/20/json/  	
+#token = {'csrftoken':'32waZaYf3EW8HNx9Nk2zoeTcYr0iqc2qlQChAGRp2nXd3FKu2dI72W0kbPcCwivs'}
+#res1 = requests.get(api_url+'/analysis/'+str(task_id)+'/')
+
 
