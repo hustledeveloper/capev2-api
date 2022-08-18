@@ -36,24 +36,8 @@ def upload_file():
 		filefullpath = app.config['UPLOAD_FOLDER']+filename
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))		
 		
-		task_id = scan_file(filename, filefullpath)		
-#need to desing a loop for tiime.sleep	
-
-
+		task_id = scan_file(filename, filefullpath)	
 		resp = get_json(task_id)
-		while True:	
-			if resp.endswith(".json"):
-				
-  				
-  				break
-  			else:
-				time.sleep(60)
-				resp = get_json(task_id)
-		
-
-		
-		
-		
 		
 		return resp
 	else:
@@ -89,16 +73,27 @@ def get_json(task_id):
 	header = {
 		
 		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537'
-		}
+		}	
+	response =("""\
 
-	response = requests.get(api_url+'/filereport/'+str(task_id)+'/json/', headers=header)
-	
-	return(response.text)
-      
+		⠀⠀⠀⠀⠀⠀⢰⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡆⠀⠀⠀⠀⠀⠀
+		⠀⠀⠀⠀⠀⠀⢸⣿⡟⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⢻⣿⡇⠀⠀⠀⠀⠀⠀
+		⠀⠀⠀⠀⠀⠀⢸⣿⡇   • ◡ •  ⢸⣿⡇⠀⠀⠀⠀⠀⠀
+		⠀⠀⠀⠀⠀⠀⢸⣿ PENDING...⢸⣿⡇⠀⠀⠀⢰⣶⠄
+		⠀⠀⠀⠀⠀⠀⢸⣿⣧⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣼⣿⡇⠀⠀⢀⣿⡿⠀
+		⠀⠀⢀⣠⣴⣶⣾⣿⡿⠿⠿⠿⠿⠿⠿⣿⣿⡿⠿⣿⣿⣷⣶⣾⡿⠟⠀⠀
+		⠀⣠⣿⡿⠋⠉⢹⣿⣿⣶⠶⣶⣶⣶⣶⣿⣿⣿⣾⣿⣿⡏⠉⠁⠀⠀⠀⠀
+		⢠⣿⡟⠀⠀⠀⢸⣿⡟⠉⠀⠉⣻⣿⣿⣏⣀⣻⣿⣉⣿⡇⠀⠀⠀⠀⠀⠀
+		⠀⠉⠁⠀⠀⠀⢸⣿⣿⣿⣤⣿⣿⣿⣿⣿⡟⠋⠙⢿⣿⡇⠀⠀⠀⠀⠀⠀
+		⠀⠀⠀⠀⠀⠀⢸⣿⣏⣉⣉⣿⣏⣉⣹⣿⣧⣀⣀⣾⣿⡇⠀⠀⠀⠀⠀⠀
+		⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⣿⡿⠿⠿⠿⠿⢿⣿⠿⠿⠿⠇⠀⠀⠀⠀⠀⠀
+		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠁⠀	""")
 
- 
 
- 
+	return(response)
+
 if __name__ == "__main__":
     app.run()
  
@@ -110,8 +105,23 @@ how to use:
 curl -F file=@/home/omer/İndirilenler/danger.zip http://127.0.0.1:5000/file-upload 
 http://0.0.0.0:8000/filereport/20/json/  	
 
-"""
 
+http://0.0.0.0:8000/submit/status/90/  pending ekranı, işlem bittiyse 
+http://0.0.0.0:8000/analysis/29/ analiz sonucu ekranına yönlendiriyor
+"""
+#need to desing a loop for tiime.sleep	
+
+"""
+		resp = get_json(task_id)
+		while True:	
+			if resp.endswith(".json"):
+				
+  				
+  				break
+  			else:
+				time.sleep(60)
+				resp = get_json(task_id)
+"""
 
 
 
