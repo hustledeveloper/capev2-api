@@ -38,10 +38,21 @@ def upload_file():
 		
 		task_id = scan_file(filename, filefullpath)		
 #need to desing a loop for tiime.sleep	
-		time.sleep(600)
+
+
+		resp = get_json(task_id)
+		while True:	
+			if resp.endswith(".json"):
+				
+  				
+  				break
+  			else:
+				time.sleep(60)
+				resp = get_json(task_id)
+		
 
 		
-		resp = get_json(task_id)
+		
 		
 		
 		return resp
