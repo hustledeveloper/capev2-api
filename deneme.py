@@ -37,10 +37,9 @@ def upload_file():
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))		
 		
 		task_id = scan_file(filename, filefullpath)		
-		
+#need to desing a loop for tiime.sleep	
 		time.sleep(600)
 
- 
 		
 		resp = get_json(task_id)
 		
@@ -95,18 +94,31 @@ if __name__ == "__main__":
  
  
  
- 
- 
- 
- 
- 
- 
- #scan_file da bi sorun var 
- 
+"""
+how to use:
+curl -F file=@/home/omer/İndirilenler/danger.zip http://127.0.0.1:5000/file-upload 
+http://0.0.0.0:8000/filereport/20/json/  	
 
-#curl -F file=@/path/to/file -F machine="cuckoo1" -H "Authorization: Token YOU_TOKEN" http://127.0.0.1:5000/file-upload
-#http://0.0.0.0:8000/filereport/20/json/  	
-#token = {'csrftoken':'32waZaYf3EW8HNx9Nk2zoeTcYr0iqc2qlQChAGRp2nXd3FKu2dI72W0kbPcCwivs'}
-#res1 = requests.get(api_url+'/analysis/'+str(task_id)+'/')
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
