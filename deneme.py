@@ -92,8 +92,8 @@ def ready():
 	task_id = request.args.get('task_id')
 	
 	response = requests.get(api_url+'/apiv2/tasks/get/report/'+str(task_id)+'/json/')
-   
-	return(response)
+   	
+	return(json.dumps(response))
 	
 if __name__ == "__main__":
     app.run()  
@@ -107,9 +107,8 @@ how to use:
 curl -F file=@/home/omer/İndirilenler/danger.zip http://127.0.0.1:5000/file-upload 
 http://0.0.0.0:8000/filereport/20/json/  	
 
-curl 127.0.0.1:5000/ready?task_id=<your_task_id>
+for request:
+curl -L "http://0.0.0.0:8000/apiv2/tasks/get/report/29/json" 
 
-http://0.0.0.0:8000/submit/status/90/  pending ekranı, işlem bittiyse 
-http://0.0.0.0:8000/analysis/29/ analiz sonucu ekranına yönlendiriyor
 """
 
