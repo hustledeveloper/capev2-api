@@ -36,15 +36,13 @@ def upload_file():
 		filefullpath = app.config['UPLOAD_FOLDER']+filename
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))		
 		
-		task_id = scan_file(filename, filefullpath)
+		task_id = scan_file(filename, filefullpath)		
 		
-		
-		"""time.sleep(1)
+		time.sleep(600)
 
-                 """
  
 		
-		resp = get_json('29')
+		resp = get_json(task_id)
 		
 		
 		return resp
