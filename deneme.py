@@ -64,6 +64,7 @@ def scan_file(filename, filefullpath):
 			  data=multipart_data
 			)
 	task_id = response.json()["data"]["task_ids"][0]
+	
 	return(task_id)
 
 
@@ -73,7 +74,8 @@ def get_json(task_id):
 	header = {
 		
 		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537'
-		}	
+		}
+ 										
 	response =("""\
 
 		⠀⠀⠀⠀⠀⠀⢰⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡆⠀⠀⠀⠀⠀⠀
@@ -89,14 +91,27 @@ def get_json(task_id):
 		⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⣿⡿⠿⠿⠿⠿⢿⣿⠿⠿⠿⠇⠀⠀⠀⠀⠀⠀
 		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠁⠀	""")
-
-
+		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠁⠀	
+		   Analysis will be ready in about 5 minutes
+		         your task_id:  """+str(task_id)+"""⠀
+     example request for analysis:  curl 127.0.0.1:5000/ready?task_id=<your_task_id>
+	   
+		   
+		""")
 	return(response)
-
+	
 if __name__ == "__main__":
-    app.run()
- 
+    app.run()	
+"""
+@app.route('ready',methods = ['GET'])  	
+def ready(task_id):	
+
+   response = requests.get(api_url+'/filereport/'+str(task_id)+'/json/', headers=header)
+   
+   return(response)
+  
+
+"""
  
  
  
