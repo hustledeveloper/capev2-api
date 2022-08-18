@@ -76,42 +76,29 @@ def get_json(task_id):
 		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537'
 		}
  										
-	response =("""\
+	response = jsonify({ 'task_id' : task_id})
+	return(response)
+	
 
-		⠀⠀⠀⠀⠀⠀⢰⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡆⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⢸⣿⡟⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⢻⣿⡇⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⢸⣿⡇   • ◡ •  ⢸⣿⡇⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⢸⣿ PENDING...⢸⣿⡇⠀⠀⠀⢰⣶⠄
-		⠀⠀⠀⠀⠀⠀⢸⣿⣧⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣼⣿⡇⠀⠀⢀⣿⡿⠀
-		⠀⠀⢀⣠⣴⣶⣾⣿⡿⠿⠿⠿⠿⠿⠿⣿⣿⡿⠿⣿⣿⣷⣶⣾⡿⠟⠀⠀
-		⠀⣠⣿⡿⠋⠉⢹⣿⣿⣶⠶⣶⣶⣶⣶⣿⣿⣿⣾⣿⣿⡏⠉⠁⠀⠀⠀⠀
-		⢠⣿⡟⠀⠀⠀⢸⣿⡟⠉⠀⠉⣻⣿⣿⣏⣀⣻⣿⣉⣿⡇⠀⠀⠀⠀⠀⠀
-		⠀⠉⠁⠀⠀⠀⢸⣿⣿⣿⣤⣿⣿⣿⣿⣿⡟⠋⠙⢿⣿⡇⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⢸⣿⣏⣉⣉⣿⣏⣉⣹⣿⣧⣀⣀⣾⣿⡇⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⠸⠿⠿⠿⣿⡿⠿⠿⠿⠿⢿⣿⠿⠿⠿⠇⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠁⠀	
-		   Analysis will be ready in about 5 minutes
-		         your task_id:  """+str(task_id)+"""⠀
-     example request for analysis:  curl 127.0.0.1:5000/ready?task_id=<your_task_id>
-	   
-		   
-		""")
+@app.route('/ready',methods = ['GET'])  	
+def ready():	
+
+
+	header = {
+		
+		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537'
+		}
+		
+	task_id = request.args.get('task_id')
+	
+	response = requests.get(api_url+'/apiv2/tasks/get/report/'+str(task_id)+'/json/')
+   
 	return(response)
 	
 if __name__ == "__main__":
-    app.run()	
-"""
-@app.route('ready',methods = ['GET'])  	
-def ready(task_id):	
+    app.run()  
 
-   response = requests.get(api_url+'/filereport/'+str(task_id)+'/json/', headers=header)
-   
-   return(response)
-  
 
-"""
  
  
  
@@ -120,41 +107,9 @@ how to use:
 curl -F file=@/home/omer/İndirilenler/danger.zip http://127.0.0.1:5000/file-upload 
 http://0.0.0.0:8000/filereport/20/json/  	
 
+curl 127.0.0.1:5000/ready?task_id=<your_task_id>
 
 http://0.0.0.0:8000/submit/status/90/  pending ekranı, işlem bittiyse 
 http://0.0.0.0:8000/analysis/29/ analiz sonucu ekranına yönlendiriyor
 """
-#need to desing a loop for tiime.sleep	
-
-"""
-		resp = get_json(task_id)
-		while True:	
-			if resp.endswith(".json"):
-				
-  				
-  				break
-  			else:
-				time.sleep(60)
-				resp = get_json(task_id)
-"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
