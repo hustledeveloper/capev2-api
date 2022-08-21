@@ -42,7 +42,7 @@ python3 main.py
 - This request gives you a task id
 
 ```bash
-curl -F file=@/path/to/file http://127.0.0.1:5000/file-upload
+curl -F file=@/path/to/file http://<your_container_ip>:5000/file-upload
 ```
 ### You can get your analysis report with your task id using command below
 
