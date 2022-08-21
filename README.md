@@ -21,18 +21,17 @@ You can start by downloading this repo with git command below
 ```bash
 sudo python3 utils/rooter.py -g cape
 ```
-
-
-
 ```bash
 sudo -u cape python3 cuckoo.py 
 ```
 
-
-
 ```bash
 sudo -u cape  python3 utils/process.py -p7 auto
 ```
+```bash
+sudo -u cape python3 manage.py runserver 0.0.0.0:8000
+```
+
 ## Run API
 
 ```bash
