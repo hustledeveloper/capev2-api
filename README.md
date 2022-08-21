@@ -12,7 +12,7 @@ You can start by downloading this repo with git command below
 
 [CAPEv2 docs](https://capev2.readthedocs.io/en/latest/introduction/index.html)
 
-
+[My suggestions about Cape](https://medium.com/@faruk008887/cape-malware-analysis-system-c470abaa2f60)
 
 ## Run cape
 
