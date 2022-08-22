@@ -8,7 +8,7 @@ from flask import Flask, request, redirect, jsonify
 from werkzeug.utils import secure_filename
 import time
 
-api_url = 'http://0.0.0.0:8000'
+api_url = 'http://172.17.0.1:8000'
 
 ALLOWED_EXTENSIONS = set(['apk', 'zip', 'ipa', 'appx'])
 
@@ -96,7 +96,7 @@ def ready():
 	return(json.dumps(response))
 	
 if __name__ == "__main__":
-    app.run()  
+    app.run(host="0.0.0.0", port=8001)  
 
 
  
