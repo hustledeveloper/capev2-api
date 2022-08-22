@@ -8,7 +8,7 @@ from flask import Flask, request, redirect, jsonify
 from werkzeug.utils import secure_filename
 import time
 
-api_url = 'http://172.17.0.1:8000'
+api_url = 'http://172.17.0.1:8000' #host_ip
 
 ALLOWED_EXTENSIONS = set(['apk', 'zip', 'ipa', 'appx'])
 
@@ -93,22 +93,17 @@ def ready():
 	
 	response = requests.get(api_url+'/apiv2/tasks/get/report/'+str(task_id)+'/json/')
    	
-	return(json.dumps(response))
+	return(response.text)
 	
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8001)  
 
 
  
- 
- 
-"""
-how to use:
-curl -F file=@/home/omer/İndirilenler/danger.zip http://127.0.0.1:5000/file-upload 
-http://0.0.0.0:8000/filereport/20/json/  	
+''' 
+curl -F file=@/path/to/file http://0.0.0.0:8001/file-upload
 
-for request:
-curl -L "http://0.0.0.0:8000/apiv2/tasks/get/report/29/json" 
+curl -L "http://0.0.0.0:8001/ready?task_id=<your_task_id>"
 
-"""
+'''
 

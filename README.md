@@ -35,18 +35,22 @@ sudo -u cape python3 manage.py runserver 0.0.0.0:8000
 ## Run API
 
 ```bash
-python3 main.py
+
+docker build . -t cape-api:latest
+
+docker run -p 8001:8001  cape-api:latest
+
 ```
 ### You can send your file request using command below
 - This request gives you a task id
 
 ```bash
-curl -F file=@/path/to/file http://<your_container_ip>:5000/file-upload
+curl -F file=@/path/to/file http://0.0.0.0:8001/file-upload
 ```
 ### You can get your analysis report with your task id using command below
 
 ```bash
-curl -L "http://0.0.0.0:8000/apiv2/tasks/get/report/<your_task_id>/json"
+curl -L "http://0.0.0.0:8001/ready?task_id=<your_task_id>"
 ```
 
   
