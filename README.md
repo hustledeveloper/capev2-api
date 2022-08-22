@@ -36,6 +36,10 @@ sudo -u cape python3 manage.py runserver 0.0.0.0:8000
 
 ```bash
 
+python3 main.py
+
+for docker:
+
 docker build . -t cape-api:latest
 
 docker run -p 8001:8001  cape-api:latest
