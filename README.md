@@ -37,6 +37,24 @@ sudo -u cape python3 manage.py runserver 0.0.0.0:8000
 ```bash
 git clone https://github.com/omer832/cape.git
 ```
+## Create Token
+
+Ensure you are in CAPE's web directory
+```bash
+cd /opt/CAPEv2/web
+```
+To create super user aka admin
+```bash
+python3 manage.py createsuperuser
+```
+To create normal user, use web interface /admin/ (in case if you not changed path)
+
+By hand, only required if auth enabled and user MUST exist
+```bash
+python3 manage.py drf_create_token <your_user>
+```
+
+
 ## Run API
 
 ```bash

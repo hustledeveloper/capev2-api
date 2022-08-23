@@ -56,7 +56,7 @@ def scan_file(filename, filefullpath):
 
 	header = {
 		'Content-Type': multipart_data.content_type,
-		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537'
+		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537' #insert your token here
 		}
 	
 	response = requests.post(api_url+'/apiv2/tasks/create/file/',
@@ -73,7 +73,7 @@ def get_json(task_id):
 
 	header = {
 		
-		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537'
+		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537' #insert your token here
 		}
  										
 	response = jsonify({ 'task_id' : task_id})
@@ -86,7 +86,7 @@ def ready():
 
 	header = {
 		
-		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537'
+		'Authorization': '6fc5be6ee1d904476ba6c255173ad3f086a6f537' #insert your token here
 		}
 		
 	task_id = request.args.get('task_id')
@@ -104,6 +104,7 @@ if __name__ == "__main__":
 curl -F file=@/path/to/file http://0.0.0.0:8001/file-upload
 
 curl -L "http://0.0.0.0:8001/ready?task_id=<your_task_id>"
+
 
 '''
 
