@@ -35,7 +35,7 @@ sudo -u cape python3 manage.py runserver 0.0.0.0:8000
 ## Get API
 
 ```bash
-git clone https://github.com/omer832/cape.git
+git clone https://github.com/omer832/capev2-api.git
 ```
 ## Create Token
 
