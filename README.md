@@ -6,7 +6,7 @@ This API will an analyze uploaded file with CAPEv2 and return analysis result as
 ## Setup CAPEv2
 You can start by downloading this repo with git command below
 ```
-  git clone https://github.com/kevoreilly/CAPEv2
+  git clone https://github.com/kevoreilly/CAPEv2.git
 ```
 
 
@@ -32,6 +32,11 @@ sudo -u cape  python3 utils/process.py -p7 auto
 sudo -u cape python3 manage.py runserver 0.0.0.0:8000
 ```
 
+## Get API
+
+```bash
+git clone https://github.com/omer832/cape.git
+```
 ## Run API
 
 ```bash
