@@ -1,4 +1,4 @@
-Flask==2.2.2
+flask>=2.2.5
 requests==2.31.0
 requests_toolbelt==0.9.1
-Werkzeug==2.2.2
+Werkzeug>=2.2.3
